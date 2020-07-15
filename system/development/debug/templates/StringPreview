@@ -1,0 +1,16 @@
+<div class="alevo-debug" style="background: #2C3335;border: 2px solid #f57900;color:#000; margin: 5px 0 5px 0;font-family:monospace;">
+	<div style="padding: 5px;background:#f57900;">
+		<span title="Preview" style="background:#cc0404;padding: 3px 7px;font-weight:bold;color: #FFC107;margin: 4px;">
+			<span>@--error--@</span>
+		</span>
+		<span title="Title" style="font-size:14px;">
+			<strong>@--title--@</strong>
+		</span>
+	</div>
+	<div title="Preview content" style="color:#fff;line-height:18px;padding:10px 10px 0 10px;">
+		<span>@--preview--@</span>
+	</div>
+	<div title="Info" style="color:#FFC107;line-height:18px;padding:5px 10px 10px 10px;">
+		<small>@--info--@</small>
+	</div>
+</div>

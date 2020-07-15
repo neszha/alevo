@@ -1,0 +1,105 @@
+{
+	
+	"jenis_kelamin" : {
+		"l" : "Laki-Laki",
+		"p" : "Perempuan"
+	},
+
+	"agama" : {
+		"a-1" : "Islam",
+		"a-2" : "Kristen/Protestan",
+		"a-3" : "Khatolik",
+		"a-4" : "Hindu",
+		"a-5" : "Budha",
+		"a-6" : "Khongucu",
+		"a-7" : "Kepercayaan Kepada Tuhan YME",
+		"a-99": "Lainnya"
+	},
+
+	"kewarganegaraan" : {
+		"k-1" : "Warga Negara Indonesia (WNI)",
+		"k-2" : "Warga Negara Asing (WNA)"
+	},
+
+	"berkebutuhan_khusus" : {
+		"bk-1" : "Tidak",
+		"bk-2" : "Tuna Netra",
+		"bk-3" : "Tuna Rungu",
+		"bk-4" : "Grahita Ringan",
+		"bk-5" : "Grahita Sedang",
+		"bk-6" : "Daksa Ringan",
+		"bk-7" : "Daksa Sedang",
+		"bk-8" : "Laras",
+		"bk-9" : "Wicara",
+		"bk-10": "Tuna Ganda",
+		"bk-11": "Hiper Aktif",
+		"bk-12": "Cerdas Istimewa",
+		"bk-13": "Bakat Istimewa",
+		"bk-14": "Kesulitan Belajar",
+		"bk-15": "Narkoba",
+		"bk-16": "Indigo",
+		"bk-17": "Down Sindrome",
+		"bk-18": "Autis",
+		"bk-99": "Lainnya"
+	},
+
+	"tempat_tinggal" : {
+		"tt-1": "Bersama orang tua",
+		"tt-2": "Bersama Wali",
+		"tt-3": "Kos",
+		"tt-4": "Asrama",
+		"tt-5": "Panti Asuhan"
+	},
+
+	"transportasi" : {
+		"t-1": "Jalan Kaki",
+		"t-2": "Kendaraan Pribadi",
+		"t-3": "Kendaraan Umum",
+		"t-4": "Antar Jemput",
+		"t-5": "Kereta Api",
+		"t-6": "Ojek",
+		"t-7": "Andong/Dokar/Delman/Beca",
+		"t-8": "Perahu/Rakit",
+		"t-99": "Lainnya"
+	},
+
+	"pendidikan" : {
+		"p-1" : "Tidak Sekolah",
+		"p-2" : "Putus SD",
+		"p-3" : "SD Sederajat",
+		"p-4" : "SMP Sederajat",
+		"p-5" : "SMA Sederajat",
+		"p-6" : "D1",
+		"p-7" : "D2",
+		"p-8" : "D3",
+		"p-9" : "D4/S1",
+		"p-10" : "S2",
+		"p-11" : "S3"
+	},
+
+	"pekerjaan" : {
+		"p-1" : "Tidak Bekerja",
+		"p-2" : "Nelayan",
+		"p-3" : "Petani",
+		"p-4" : "Peternak",
+		"p-5" : "PNS/TNI/PORLI",
+		"p-6" : "Karyawan Swasta",
+		"p-7" : "Pedagang Kecil",
+		"p-8" : "Pedagang Besar",
+		"p-9" : "Wiraswasta",
+		"p-10" : "Wirausaha",
+		"p-11" : "Buruh",
+		"p-12" : "Pensiunan",
+		"p-13" : "Ibu Rumah Tangga"
+	},
+
+	"penghasilan" : {
+		"p-1" : "Tidak Berpenghasilan",
+		"p-2" : "Kurang dari Rp. 500.000",
+		"p-3" : "Rp. 500.000 - Rp. 1.000.000",
+		"p-4" : "Rp. 1.000.000 - Rp. 2.000.000",
+		"p-5" : "Rp. 2.000.000 - Rp. 5.000.000",
+		"p-6" : "Rp. 5.000.000 - RP. 20.000.000",
+		"p-7" : "Lebih dari Rp. 20.000.000"
+	}
+}

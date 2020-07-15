@@ -1,0 +1,167 @@
+body{
+	background-color: #fafafa;
+}
+
+nav{
+	margin-bottom: 8px;
+}
+
+nav .brand-logo{
+	width: 42px;
+	height: 42px;
+	overflow: hidden;
+	margin-top: 10px;
+	margin-right: 12px;
+	border-radius: 100%;
+	cursor: pointer;
+	box-shadow: 0 10px 33px -14px rgba(0, 0, 0, 0.1);
+}
+
+nav .brand-logo img{
+	border-radius: 100%;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+nav .sidenav-trigger {
+	float: left;
+	position: relative;
+	z-index: 1;
+	height: 56px;
+	margin: 0 18px;
+	display: block !important;
+}
+
+nav, header, main, footer {
+	padding-left: 300px;
+}
+
+main{
+	min-height: 85vh;
+}
+
+.main-header .card-panel{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+main .data-update{
+	display: block !important;
+}
+
+main .data-update .time{
+	font-style: italic;
+	color: #ffc107;
+	cursor: pointer;
+}
+
+main .data-update .time:hover{
+	text-decoration: underline;
+}
+
+.main-data .card-title{
+	font-size: 32px;
+	margin-bottom: 22px !important;
+}
+
+footer{
+	padding-top: 0 !important;
+	background-color: #191919 !important;
+	font-size: 14px;
+}
+
+.card-panel .card-title h4{
+	margin-top: 0;
+}
+
+.profile .image{
+	display: flex;
+	justify-content: center;
+}
+
+.profile .image img{
+	display: block;
+	margin: 12px auto;
+	width: 150px;
+	border-radius: 5px;
+}
+
+.profile .data{
+	text-align: center;
+}
+
+.profile .more{
+	margin-top: 22px;
+}
+
+.alert{
+	padding: 12px;
+	border-radius: 3px;
+	margin: 15px 0;
+}
+
+.btn-data{
+	text-align: center;
+}
+
+.btn-data a{
+	margin: 0 8px 18px 8px;
+}
+
+.btn-save-permanent button{
+	margin-top: 18px;
+}
+
+.horizontal-radio label{
+	margin-right: 12px;
+}
+
+#edit-page .input-field > input,
+#edit-page .input-field > textarea,
+#edit-page .input-field .select-wrapper > input{
+	color: #fff;
+}
+
+#edit-page .select-wrapper svg.caret{
+	fill: rgba(255, 255, 255, 0.87) !important;
+}
+
+#edit-page .card-title{
+	text-align: center;
+}
+
+.clear{
+	float: none;
+	clear: both;
+}
+
+.datepicker-calendar input{
+	color: #000 !important;
+}
+
+.datepicker-calendar button{
+	color: #000;
+}
+
+.datepicker-calendar td.is-selected button{
+	color: #fff;
+}
+
+main.hide-form .wali-hide{
+	display: none;
+}
+
+.no-wali{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.d-none{
+	display: none;
+}
+
+.sidenav .user-view .email.nisn{
+	padding-bottom: 0 !important;
+}

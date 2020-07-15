@@ -1,0 +1,37 @@
+{
+	"access" : {
+		"a1" : "Login",
+		"a2" : "Logout"
+	},
+
+	"view" : {
+		"vn1" : "Membuka halaman dashboard.",
+		"vn2" : "Membuka halaman pengaturan.",
+		"vnd1" : "Membuka halaman data pribadi.",
+		"vnd2" : "Membuka halaman data ayah.",
+		"vnd3" : "Membuka halaman data ibu.",
+		"vnd4" : "Membuka halaman data wali.",
+		"vnd5" : "Membuka halaman data kontak.",
+		"vnd6" : "Membuka halaman data periodik.",
+		"vnd7" : "Membuka halaman data dokumen.",
+		"vde1" : "Membuka halaman perbarui data pribadi.",
+		"vde2" : "Membuka halaman perbarui data ayah.",
+		"vde3" : "Membuka halaman perbarui data ibu.",
+		"vde4" : "Membuka halaman perbarui data wali.",
+		"vde5" : "Membuka halaman perbarui data kontak.",
+		"vde6" : "Membuka halaman perbarui data periodik.",
+		"vde7" : "Membuka halaman perbarui data dokumen."
+	},
+
+	"update" : {
+		"up" : "Memperbarui password",
+		"ud1" : "Menyimpan perubahan data pribadi",
+		"ud2" : "Menyimpan perubahan data ayah",
+		"ud3" : "Menyimpan perubahan data ibu",
+		"ud4" : "Menyimpan perubahan data wali",
+		"ud5" : "Menyimpan perubahan data kontak",
+		"ud6" : "Menyimpan perubahan data periodik",
+		"ud7" : "Menyimpan perubahan data dokumen"
+	}
+
+}

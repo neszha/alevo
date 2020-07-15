@@ -1,0 +1,403 @@
+/*main*/
+html{
+	scroll-behavior: smooth;
+}
+
+body{
+	/*font-family: sans-serif;*/
+}
+
+/*Header*/
+
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+header .wrapper{
+	transition: .5s;
+}
+
+header.scroll .wrapper{
+	background: #fff;
+	box-shadow: 0 10px 33px -14px rgba(0, 0, 0, 0.1);
+}
+
+header .nav{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+	padding: 10px 130px;
+	transition: .5s;
+}
+
+header.scroll .nav{
+	height: 85px;
+	padding: 10px 100px;
+}
+
+header .row .nav-col{
+
+}
+
+header .nav-col.mobile{
+	display: none;
+}
+
+header .image-logo{
+	/*margin-left: 60px;*/
+	/*padding: 5px 0;*/
+}
+
+header .image-logo img{
+	height: 60px;
+	/*height: -webkit-fill-available;*/
+}
+
+header .nav-link{
+	display: flex;
+	align-items: center;
+}
+
+header .nav-link ul{
+	margin: 0;
+	display: flex;
+	user-select: none;
+}	
+
+header .nav-link ul li{
+	display: flex;
+	align-items: center;
+	margin-left: 35px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+header .nav-link a{
+	transition: .5s;
+	color: #fff;
+}
+
+header.scroll a{
+	color: #424242;
+}
+
+header .nav-link ul li .btn{
+	color: #fff;
+}
+
+header .nav-link ul li a:not(.btn):hover{
+	transition: .1s;
+	color: #fb8c00;
+}
+
+.menu-icon{
+	color: #fff;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.menu-icon:hover{
+	color: #e0e0e0;
+}
+
+.menu-icon i{
+	font-size: 36px;
+}
+
+header .mobile{
+	position: relative;
+}
+
+.nav-toggle{
+	position: absolute;
+	top: 70px;
+	right: 0;
+	min-width: 200px;
+	/*height: 400px;*/
+	background: #fff;
+	z-index: 4;
+	box-shadow: 0 10px 33px -14px rgba(0, 0, 0, 0.2);
+	padding: 22px 15px 0 15px;
+	display: none;
+	transition: .5s;
+	transform: translateY(-20px);
+	opacity: 0;
+	border-radius: 2px;
+}
+
+.nav-toggle::before{
+	content: '';
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	right: 10px;
+	top: -5px;
+	transform: rotate(45deg);
+	z-index: 2;
+}
+
+.nav-toggle.active{
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.nav-toggle .nav-link{
+	/*display: block;*/
+}
+
+.nav-toggle .nav-link ul{
+	display: block;
+	margin: auto;
+}
+
+.nav-toggle .nav-link ul li{
+	display: block;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 22px;
+}
+
+.nav-toggle .nav-link ul li a{
+	color: #424242;
+}
+
+.nav-toggle .nav-link ul li .btn{
+	color: #fff;
+}
+
+
+/*main-banner*/
+#main-banner{
+	position: relative;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	min-height: 500px;
+	background-color: red; 
+	background-image: linear-gradient(to bottom right, #006064, #00acc1);
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+}
+
+.banner-content{
+	color: #fff;
+	position: relative;
+	z-index: 2;	
+}
+
+.banner-content .wrapper{
+	padding: 0 130px;
+
+}
+
+.banner-content h1{
+	text-align: center;
+	font-size: 52px;
+	font-weight: 100;
+	letter-spacing: 2px;
+}
+
+.banner-content h3{
+	text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0 160px;
+    line-height: 28px;
+}
+
+.banner-content .banner-btn{
+	width: 100%;
+	margin-top: 60px;
+	text-align: center;
+}
+
+#main-banner .overlay{
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	opacity: .3;
+}
+
+#main-banner .overlay img{
+
+}
+
+#index .input-field input{
+	border-bottom:2px solid #fff;
+	color: #fff;
+}
+
+#index .input-field label{
+	color: #e0e0e0;
+}
+
+#index .input-field input.invalid{
+	border-color: #F44336;
+	box-shadow: none;
+}
+
+/*about*/
+
+#about{
+	min-height: 100vh;
+	display: flex;
+}
+
+#about p{
+	font-size: 22px;
+}
+
+
+/*footer*/
+
+footer{
+	position: relative;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background: #212121;
+	padding: 20px 0;
+}
+
+footer .copy{
+	font-size: 14px;
+}
+
+
+/*LOGIN*/
+
+.go-home{
+	position: fixed;
+	z-index: 5;
+	left: 12px;
+	top: 12px;
+	cursor: pointer;
+	transition: .1s;
+}
+
+.go-home:hover i{
+	color: #424242;
+}
+
+.go-home i{
+	color: #212121;
+	font-size: 30px;
+}
+
+#login-siswa #main-banner{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #eeeeee;
+}
+
+#login-siswa .wrapper{
+	width: 600px;
+	transition: .3s;
+	margin: 30px 0;
+}
+
+#login-siswa .login-item{
+}
+
+.login-item .head{
+}
+
+.login-item .logo{
+}
+
+.login-item .logo img{
+	width: 70px;
+	display: block;
+	margin: 0 auto;
+}
+
+.login-item .title{
+	text-align: center;
+}
+
+.login-item .title h3{
+	font-size: 27px;
+	font-weight: 500;
+	margin: 25px 0;
+	color: #212121;
+}
+
+.login-item .body{
+	background: #fff;
+	box-shadow: 0 10px 33px -14px rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	padding: 28px 22px;
+}
+
+.login-item .body .login-wrapper{
+
+}
+
+.login-item .body .login-wrapper .row{
+	margin-bottom: 0;
+}
+
+.login-item .body .login-wrapper form{
+
+}
+
+.login-item .body .login-wrapper .input-field{
+	margin: 12px 0;
+	display: flex;
+	align-items: center;
+}
+
+.login-item .body .login-wrapper .input-field.login-info{
+	font-size: 14px;
+}
+
+.login-item .body .login-wrapper input{
+
+}
+
+.login-item .body .login-wrapper label{
+
+}
+
+.login-item .body .login-wrapper button{
+	width: 100%;
+}
+
+.login-item .body .login-wrapper .lupa-pass{
+	border-top: 1px solid #e0e0e0;
+	margin-top: 12px;
+	padding-top: 18px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.login-lock{
+	position: absolute;
+	z-index: 4;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0,0,0,0.4);
+	user-select: none;
+}
+
+.login-lock div{
+	text-align: center;
+}
+
+.login-lock i{
+	font-size: 200px;
+	color: #fafafa;
+}
+
+

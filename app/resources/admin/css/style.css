@@ -1,0 +1,47 @@
+html body{
+	scroll-behavior: smooth;
+}
+
+.btn-wrapper{
+
+}
+
+.btn-wrapper button{
+	margin-top: 12px;
+}
+
+td.data-action{
+	display: flex;
+	justify-content: center;
+}
+
+
+td.data-action button{
+	margin: 0 3px;
+}
+
+#search-filter h3{
+	border-bottom: 1px solid #c5c5c5;
+	padding-bottom: 15px;
+}
+
+#search-filter p{
+	cursor: pointer;
+	color: #828282;
+}
+
+#search-filter p.active{
+	color: #303030;
+}
+
+#search-filter p:hover{
+	text-decoration: underline;
+}
+
+table#data-siswa tbody td{
+	text-align: left;
+}
+
+.btn-action button{
+	margin: 0 4px;
+}

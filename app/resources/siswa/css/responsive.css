@@ -1,0 +1,52 @@
+@media screen and (max-width: 1680px) {
+
+}
+
+@media screen and (max-width: 1368px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+
+}
+
+@media screen and (max-width : 992px) {
+	nav, header, main, footer {
+		padding-left: 0;
+	}
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 575px) {
+
+	nav .brand-logo{
+		margin-top: 8px;
+		width: 38px;
+		height: 38px;
+	}
+
+	.nav-link{
+		display: none;
+	}
+
+}
+
+@media screen and (max-width: 480px) {
+
+	.btn-data a{
+		margin: 0 0 12px 0;
+		width: 100%;
+	}
+
+	.btn-save-permanent button{
+		width: 100%;
+	}
+
+}
+
+@media screen and (max-width: 360px) {
+
+}
