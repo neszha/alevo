@@ -16,6 +16,7 @@
  *	argv 1
  */
 $config['render'] = ['render', '-r'];
+$config['build']  = ['build', '-b'];
 $config['mode']   = ['mode', '-M'];
 $config['make']   = ['make', '-m'];
 $config['serve']  = ['serve', '-s'];

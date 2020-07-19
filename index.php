@@ -12,5 +12,3 @@
 */
 
 require_once 'system/init.php';
-// exec("cls");
-// require_once 'system/development/cli/core/RenderEngine.php';

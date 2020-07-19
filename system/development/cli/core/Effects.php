@@ -74,9 +74,9 @@ function log_begin($str)
 {
 	if (App::from_cli())
 	{
-		$x = ".\n..\n";
+		$x = "\n.\n..\n";
 		$x .= "----------------[ $str ]-->> \n";
-		$x .= "..\n.\n";
+		$x .= "..\n.\n\n";
 		echo $x;
 	}
 }
@@ -92,7 +92,7 @@ function log_end()
 	}
 }
 
-function scan_view_file($data, $end = false)
+function render_file_scan($data, $end = false)
 {
 	if (App::from_cli())
 	{

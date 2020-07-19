@@ -1,6 +1,6 @@
 /node_modules
-static/*
+/@build
+/static
 /assets/static/*
 /storage/views/*
 /storage/cache/*
-/@build/*

@@ -16,7 +16,7 @@ class RenderView extends RenderEngine
 		log_begin('Render View');
 		$this->save_file($this->storage_path, '');
 		$this->template_code_replace();
-		$this->scan_dir();
+		$this->scan_view_dir();
 		$this->set_log_scan_dir();
 		$this->clear_rendered_view();
 		$this->render_all();
@@ -242,29 +242,25 @@ class RenderView extends RenderEngine
 			'total'   => count($this->file_array),
 			'elapsed' => $this->time_elapsed,
 		];
-		scan_view_file($this->scan_log, true);
+		render_file_scan($this->scan_log, true);
 	}
 
-	private function scan_dir($dir = false)
+	private function scan_view_dir()
 	{
 		static $start_time;
 		if(empty($start_time)) $start_time = time();
 		$time_now           = time();
 		$this->time_elapsed = $time_now - $start_time;
-		if(!$dir) $dir      = $this->view_dir;
-		$dir_open           = opendir($dir);
-		while (($name = readdir($dir_open)) != false) 
+
+		$data = $this->sysPath->scan_dir($this->view_dir);
+		$this->file_array = [];
+		foreach ($data->file as $path) 
 		{
-			$path = $dir . $name;
-			if (is_file($path)) 
-			{
-				$this->file_array[] = $path;
-				scan_view_file([$path, $name], false);
-			}else{
-				if ($name !== '.' AND $name !== '..') $this->scan_dir($path . '/');
-			}
+			$array = explode('/', $path);
+			$name = end($array);
+			$this->file_array[] = $path;
+			render_file_scan([$path, $name], false);
 		}
-		closedir($dir_open);
 	}
 
 	private function config($key)

@@ -28,7 +28,7 @@ if (in_array($argv[1], $config['render']))
 	{
 		$run->render_view();
 		$run->render_resource();
-		return true;
+		exit();
 	}
 
 	/**
@@ -39,7 +39,7 @@ if (in_array($argv[1], $config['render']))
 	{
 		$run->render_view();
 		$run->render_resource();
-		return true;
+		exit();
 	}
 
 	/**
@@ -49,7 +49,7 @@ if (in_array($argv[1], $config['render']))
 	if (in_array($argv[2], $config['view']))
 	{
 		$run->render_view();
-		return true;
+		exit();
 	}
 
 	/**
@@ -60,10 +60,21 @@ if (in_array($argv[1], $config['render']))
 	if (in_array($argv[2], $config['resource']))
 	{
 		$run->render_resource();
-		return true;
+		exit();
 	}
 
 }
+
+/**
+ *	php alevo build
+ *	php alevo -b
+ */
+if (in_array($argv[1], $config['build']))
+{
+	$run->build();
+	exit();
+}
+
 
 /**
  *	php alevo mode ...
@@ -79,7 +90,7 @@ if (in_array($argv[1], $config['mode']))
 	if (in_array($argv[2], $config['development']))
 	{
 		$run->development();
-		return true;
+		exit();
 	}
 
 	/**
@@ -90,7 +101,7 @@ if (in_array($argv[1], $config['mode']))
 	if (in_array($argv[2], $config['production']))
 	{
 		$run->production();
-		return true;
+		exit();
 	}
 }
 
@@ -107,7 +118,7 @@ if (in_array($argv[1], $config['make']))
 	if (in_array($argv[2], $config['controller']))
 	{
 		$run->controller($argv[3]);
-		return true;
+		exit();
 	}
 
 	/**
@@ -120,10 +131,10 @@ if (in_array($argv[1], $config['make']))
 		if (!isset($argv[4])) 
 		{
 			$run->model($argv[3]);
-			return true;
+			exit();
 		}else{
 			$run->model($argv[3], $argv[4]);
-			return true;
+			exit();
 		}
 	}
 }
@@ -140,7 +151,7 @@ if (in_array($argv[1], $config['serve']))
 	}else{
 		$run->serve($argv[2]);
 	}
-	return true;
+	exit();
 }
 
 

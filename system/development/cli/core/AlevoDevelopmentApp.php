@@ -18,6 +18,15 @@ class AlevoDevelopmentApp extends App
 		$object->render_resource();
 	}
 
+	public function build()
+	{
+		require_once 'system/development/cli/core/RenderEngine.php';
+		require_once 'system/development/cli/core/AppBuild.php';
+		$object = new AppBuild();
+		$object->build();
+
+	}
+
 	////////////////////
 
 	public function development()

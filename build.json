@@ -4,11 +4,23 @@
 
 	"base-url": "http://localhost:8000",
 	"redirect-https" : false,
+	"run-server" : true,
 
 	"mysql-db" : {
 		"host" : "localhost",
 		"username" : "root",
 		"password" : "",
 		"db-name" : "data-center-smk3"
-	}
+	},
+
+	"except-build" : [
+		"app/.gitignore",
+		"app/build.json",
+		"app/views",
+		"app/models",
+		"app/README.md"
+	],
+
+	"except-render" : [
+	]
 }

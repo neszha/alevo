@@ -15,7 +15,7 @@ class RenderResource extends RenderEngine
 	{
 		log_begin('Render Resource');
 		$this->save_file($this->storage_path, '');
-		$this->scan_dir();
+		$this->scan_res_dir();
 		$this->set_log_scan_dir();
 		$this->clear_rendered_resource();
 		$this->render_all();
@@ -46,7 +46,6 @@ class RenderResource extends RenderEngine
 		// 	$this->remove_null_line();
 		// 	$this->minify();
 		}
-
 
 		$this->get_resource_name();
 		$this->set_rendered_path();
@@ -128,29 +127,25 @@ class RenderResource extends RenderEngine
 			'total'   => count($this->file_array),
 			'elapsed' => $this->time_elapsed,
 		];
-		scan_view_file($this->scan_log, true);
+		render_file_scan($this->scan_log, true);
 	}
 
-	private function scan_dir($dir = false)
+	private function scan_res_dir()
 	{
 		static $start_time;
 		if(empty($start_time)) $start_time = time();
 		$time_now           = time();
 		$this->time_elapsed = $time_now - $start_time;
-		if(!$dir) $dir      = $this->res_dir;
-		$dir_open           = opendir($dir);
-		while (($name = readdir($dir_open)) != false) 
+
+		$data = $this->sysPath->scan_dir($this->res_dir);
+		$this->file_array = [];
+		foreach ($data->file as $path) 
 		{
-			$path = $dir . $name;
-			if (is_file($path)) 
-			{
-				$this->file_array[] = $path;
-				scan_view_file([$path, $name], false);
-			}else{
-				if ($name !== '.' AND $name !== '..') $this->scan_dir($path . '/');
-			}
+			$array = explode('/', $path);
+			$name = end($array);
+			$this->file_array[] = $path;
+			render_file_scan([$path, $name], false);
 		}
-		closedir($dir_open);
 	}
 
 	private function end_log_render()
@@ -190,105 +185,6 @@ class RenderResource extends RenderEngine
 				render_resource($data, false);
 			}
 		}
-	}
-
-	///////////////////
-
-	
-
-
-	
-
-	private function minify()
-	{
-		if($this->config('minify'))
-		{
-			$str_line = explode("\n", $this->view);
-			$str_minify = '';
-			foreach ($str_line as $str)
-			{
-				$str    = preg_replace(['/^\s+/', '/\t/', '/\s+$/'], '', $str);
-				$str_minify .=  $str;
-			}
-			$this->view = $str_minify;
-		}
-	}
-
-	private function remove_null_line()
-	{
-		if($this->config('remove_null_line'))
-		{
-			$str_line = explode("\n", $this->view);
-			$str_line_array = [];
-			foreach ($str_line as $str)
-			{
-				$preg = preg_match('/\S/', $str);
-				if ($preg ==  1) $str_line_array[] = $str;
-			}
-			$this->view = implode("\n", $str_line_array);
-		}
-	}
-
-	private function remove_comment()
-	{
-		if($this->config('remove_comment'))
-		{
-			$regex   = [];
-			$regex[] = "/<!--[\s\t\n]?([\w\W][^-]+)+-->/"; // HTML
-			$regex[] = "/\/\*[\s\t\n]?[\w\W][^\*]+../"; // CSS & PHP
-			$regex[] = "/[^\:]\/\/.+/"; // JavaScript & PHP
-			$this->view = preg_replace(array_values($regex), '', $this->view);
-		}
-
-	}
-
-	private function code_replace()
-	{
-		if($this->config('use_code_replace'))
-		{
-			$str_line = explode("\n", $this->view);
-			$str_line_array = [];
-			foreach ($str_line as $str)
-			{
-				$key = 'r-2';
-				foreach ($this->replace[$key] as $a => $b) 
-				{
-					$regex = "/(?<={$b['key'][0]}).*(?={$b['key'][1]})/";
-					$match = preg_match_all($regex, $str, $select);
-					if ($match) 
-					{
-						$string_select   = $select[0][0];
-						$result['key']   = str_replace('__@__', $string_select, $b['key_real']);
-						$result['value'] = str_replace('__@__', $string_select, $b['value_real']);
-						$str             = str_replace($result['key'], $result['value'], $str);
-						$str             = str_replace("\r", null, $str);
-					}
-				}
-
-				$key = 'r-1';
-				foreach ($this->replace[$key] as $a => $b)
-				{
-					$str = str_replace($a, $b, $str);
-				}
-
-				$key = 'r-3';
-				foreach ($this->replace[$key] as $a => $b)
-				{
-					$str = str_replace($a, $b, $str);
-				}
-				$str_line_array[] = $str;
-			}
-			$this->view = implode("\n", $str_line_array);
-		}
-	}
-
-	private function config($key)
-	{
-		if(isset($_ENV['templateEngine']['VIEWS']))
-		{
-			if(isset($_ENV['templateEngine']['VIEWS'][$key])) return $_ENV['templateEngine']['VIEWS'][$key];
-		}
-		return false;
 	}
 
 }
