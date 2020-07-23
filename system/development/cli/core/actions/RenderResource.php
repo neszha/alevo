@@ -21,7 +21,6 @@ class RenderResource extends RenderEngine
 		$this->render_all();
 		$this->end_log_render();
 		log_end();
-		die();
 	}
 
 	private function render_all()

@@ -1,11 +1,11 @@
 <?php 
 /**
- * @Model       : ___Model_name___ made by .ALEVO.
- * @Date        : ___time_made_model___
+ * @Model       : @_name_@ made by .ALEVO.
+ * @Date        : @_time_@
  * @Message     : Don't be lazy typing
  */
 
-class ___Model_name___ extends DB
+class @_name_@ extends DB
 {
 
 	public function __construct()
@@ -17,7 +17,7 @@ class ___Model_name___ extends DB
 	 *	+++++++++++++++++++ Get result method.
 	 */
 
-	public function method_name()
+	public function index()
 	{
 		// your_code
 	}

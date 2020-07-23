@@ -36,7 +36,13 @@ class AppBuild extends RenderEngine
             $this->ext     = $this->get_ext($path);
             $this->path    = $path;
             $this->content = file_get_contents($path);
-            // var_dump($path);
+
+            if($this->ext == 'php')
+            {
+                require_once 'system/development/cli/core/fileRender/phpRender.php';
+                $obj = new phpRender();
+                $this->content = $obj->main($this->content);
+            }
 
             $this->set_build_path();
             $this->save_file($this->build_path, $this->content);

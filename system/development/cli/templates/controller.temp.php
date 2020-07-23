@@ -1,10 +1,10 @@
 <?php
 /**
- * @Controller  : ___Controller_name___ made by .ALEVO.
- * @Date        : ___time_made_controller___
+ * @Controller  : @_name_@ made by .ALEVO.
+ * @Date        : @_time_@
  * @Message     : Don't be lazy typing
  */
-class ___Controller_name___ extends Controller
+class @_name_@ extends Controller
 {
 
 	public function __construct()
@@ -16,13 +16,6 @@ class ___Controller_name___ extends Controller
 	{
 		// your_code
 	}
-
-
-	public function ___function_name___()
-	{
-		// your_code
-	}
-
 
 	public function other_function()
 	{

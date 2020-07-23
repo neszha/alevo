@@ -47,6 +47,44 @@ class BackgroundColorX
 	}
 }
 
+function loop_line_string($string, $delay = 10000)
+{
+	if (App::from_cli())
+	{
+		$array = str_split($string);
+		foreach ($array as $x)
+		{
+			echo $x;
+			usleep($delay);
+		}
+		echo "\n";
+	}
+}
+
+function log_warning($str)
+{
+	if (App::from_cli())
+	{
+		$tx = new TextColorX();
+		$x = "\n.\n..\n";
+		$x .= ">>>>>[ {$tx->yellow('WARNING')} ]--> $str\n";
+		$x .= "..\n.\n\n";
+		echo $x;
+	}
+}
+
+function log_success($str)
+{
+	if (App::from_cli())
+	{
+		$tx = new TextColorX();
+		$x = "\n.\n..\n";
+		$x .= ">>>>>[ {$tx->green('SUCCESS')} ]--> $str\n";
+		$x .= "..\n.\n\n";
+		echo $x;
+	}
+}
+
 function show_log($str, $usleep = 10000, $fixed = false)
 {
 	$string = $str;
@@ -78,6 +116,19 @@ function log_begin($str)
 		$x .= "----------------[ $str ]-->> \n";
 		$x .= "..\n.\n\n";
 		echo $x;
+	}
+}
+
+function log_main_begin($str, $val = null)
+{
+	if (App::from_cli())
+	{
+		$tx = new TextColorX();
+		$x = "\n.\n..\n";
+		$x .= "====================[ {$tx->red($str)} ]===>> $val \n";
+		$x .= "..\n.\n\n";
+		echo $x;
+		sleep(1);
 	}
 }
 
@@ -192,75 +243,11 @@ function loading_symbol_rand()
 	return $array[$i];
 }
 
-
-
-
-// ++++++++++++++++++++++
-
-
-
-
-
-
-
-function loop_line_string($string, $delay = 10000)
-{
-	if (App::from_cli())
-	{
-		$array = str_split($string);
-		foreach ($array as $x)
-		{
-			echo $x;
-			usleep($delay);
-		}
-	}
-}
-
 function unknown()
 {
 	if (App::from_cli())
 	{
-		loop_line_string("\n\t--> Command Unknown <-- \n", 0);
-		exit();
-	}
-}
-
-function render_log($name)
-{
-	$mode = "Production";
-	if (App::dev()) $mode = "Development";
-	loop_line_string("\n======> RUN RENDER {$name} : {$mode} Mode \n\n", 8000);
-	usleep(400*1000);
-}
-
-function loop_log($array, $string)
-{
-	if (App::from_cli())
-	{
-		foreach ($array as $x)
-		{
-			usleep(15*100);
-			$str = str_replace('@', $x, $string);
-			echo $str;
-		}
-		usleep(300*1000);
-	}
-}
-
-function string_log($value)
-{
-	if (App::from_cli())
-	{
-		usleep(15*1000);
-		echo $value;
-	}
-}
-
-function delay_proccess($str)
-{
-	if (App::from_cli())
-	{
-		loop_line_string($str);
-		usleep(400*1000);
+		$tx = new TextColorX();
+		echo ".\n=====<<==[ {$tx->red("Command Unknown")} ]==>>=====\n.\n";
 	}
 }

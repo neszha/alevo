@@ -26,7 +26,7 @@ $config['serve']  = ['serve', '-s'];
  */
 $config['view']        = ['view', '-V'];
 $config['resource']    = ['resource', 'res', '-R'];
-$config['all']    = ['all', '-a'];
+$config['all']         = ['all', '-a'];
 $config['controller']  = ['controller', 'con' ,'-C'];
 $config['model']       = ['model', 'mod' ,'-M'];
 $config['development'] = ['development', 'dev', '-D'];

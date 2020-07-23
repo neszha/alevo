@@ -9,6 +9,7 @@ $_ENV['templateEngine'] = require_once 'app/config/TemplateEngine.php';
 
 require_once 'system/App.php';
 require_once 'system/development/cli/Configuration.php';
+require_once 'system/development/cli/helpers.php';
 require_once 'system/development/cli/core/Effects.php';
 require_once 'system/development/cli/core/AlevoDevelopmentApp.php';
 require_once 'system/development/cli/core/AlevoRunCommand.php';

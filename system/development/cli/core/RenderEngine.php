@@ -97,7 +97,13 @@ class RenderEngine
     {
         $array = explode('.', $str);
         if(count($array) == 1) return null;
-        return end($array);
+        return strtolower(end($array));
+    }
+
+    public function get_render_config($type)
+    {
+        $data = $_ENV['templateEngine']['MINIFY_FILE_ON_RENDER'][$type];
+        $this->render_config = (object) $data;
     }
 
 }

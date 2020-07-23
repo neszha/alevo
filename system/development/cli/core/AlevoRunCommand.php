@@ -1,21 +1,6 @@
 <?php 
 
-// $dir              = 'system/development/cli/';
-// $notif            = $dir . 'templates/notifications/';
-
-// if ($config['development'] != true) 
-// {
-// 	$notif = file_get_contents($notif . 'dev');
-// 	echo $notif;
-// 	exit();	
-// }
-
-if (is_null($argv[1])) unknown();
-
-// ALEVO DEVELOP
-
 $run = new AlevoDevelopmentApp();
-
 
 /**
  *	php alevo render ...
@@ -24,12 +9,7 @@ $run = new AlevoDevelopmentApp();
 if (in_array($argv[1], $config['render']))
 {
 
-	if(!isset($argv[2]))
-	{
-		$run->render_view();
-		$run->render_resource();
-		exit();
-	}
+	if(	! isset($argv[2])) render_help();
 
 	/**
  	 *	... all 
@@ -82,6 +62,9 @@ if (in_array($argv[1], $config['build']))
  */
 if (in_array($argv[1], $config['mode']))
 {
+
+	if( ! isset($argv[2])) mode_help();
+
 	/**
  	 *	... development 
  	 *	... dev
@@ -111,12 +94,15 @@ if (in_array($argv[1], $config['mode']))
  */
 if (in_array($argv[1], $config['make'])) 
 {
+	if( ! isset($argv[2])) make_help();
+
 	/**
  	 *	... controller 
  	 *	... -C
  	 */
 	if (in_array($argv[2], $config['controller']))
 	{
+		if(!isset($argv[3])) make_controller_help();
 		$run->controller($argv[3]);
 		exit();
 	}
@@ -127,15 +113,9 @@ if (in_array($argv[1], $config['make']))
  	 */
 	if (in_array($argv[2], $config['model']))
 	{
-
-		if (!isset($argv[4])) 
-		{
-			$run->model($argv[3]);
-			exit();
-		}else{
-			$run->model($argv[3], $argv[4]);
-			exit();
-		}
+		if(!isset($argv[3])) make_model_help();
+		$run->model($argv[3]);
+		exit();
 	}
 }
 
@@ -154,5 +134,5 @@ if (in_array($argv[1], $config['serve']))
 	exit();
 }
 
-
 unknown();
+main_usage();
