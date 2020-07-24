@@ -6,7 +6,9 @@ class sysRouteUrl extends App
 	public static function route_security($str)
 	{
 		$server_url = self::parse_server_url($str);
-		$client_url = self::parse_client_url($server_url);
+		$client_url = self::parse_client_url();
+		var_dump($server_url);
+		var_dump($client_url);
 		return self::url_same_check($server_url, $client_url);
 	}
 
@@ -18,9 +20,11 @@ class sysRouteUrl extends App
 		return $server_url;
 	}
 
-	private function parse_client_url($array_url)
+	private function parse_client_url()
 	{
-		return parent::parseURL();
+		$url = trim(self::url(), '/');
+		$url = explode('/', $url);
+		return $url;
 	}
 
 	private function url_same_check($server_url, $client_url)

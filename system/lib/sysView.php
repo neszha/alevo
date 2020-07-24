@@ -2,12 +2,10 @@
 
 class sysView
 {
-
-	public function view_engine($view_name)
+	public function view_engine($view)
 	{
-		$this->view_name = str_replace(['/'], '.', $view_name);
+		$this->view = str_replace(['/'], '.', $view);
 		$this->get_data_template_engine();
-		$this->check_new_view();
 		return $this->view_template();
 	}
 
@@ -16,61 +14,47 @@ class sysView
 		$path        = $_ENV['path']['STORAGE_VIEW_PATH'];
 		$json_string = file_get_contents($path);
 		$object      = json_decode($json_string);
-		$this->data  = $object;
-		foreach ($object as $string)
-		{
-			$array         = explode('/@/', $string, 2);
-			$this->views[] = ['view' => $array[0], 'path' => $array[1]];
-		}
-	}
-
-	private function check_new_view()
-	{
-		$key = str_replace(['.'], '/', $this->view_name);
-		var_dump($key);
-		if (!isset($this->data->$key))
-		{
-			$this->render_all();
-		}
+		$this->views = $object;
 	}
 
 	public function view_template()
 	{
-		$array = $this->views;
-		for ($i=0; $i < count($array); $i++) 
-		{ 
-			$view = $array[$i]['view'];
-			$path = $array[$i]['path'];
-			if ($view == $this->view_name) 
+		$key = $this->view;
+		if (isset($this->views->$key))
+		{
+			$path = $this->views->$key;
+			/*@devData*/
+			if (App::dev())
 			{
-				App::alevo_token();
-				if (alevo_dev() == true) 
-				{
-					require_once 'sysTemplateEngine.php';
-					$object = new sysTemplateEngine();
-					$object->render_view_template($view, $path);	
-				}
-				return $path;
+				require_once 'system/development/cli/core//RenderEngine.php';
+				$obj = new RenderEngine();
+				$obj->update_render_view($key, $path);
+			}
+			/*@endDevData*/
+			return $path;
+		}
+
+		/*@devData*/
+		if (App::dev())
+		{
+			$path = $_ENV['path']['VIEWS_DIR'] . $this->view . '.php';
+			if(is_file($path))
+			{
+				require_once 'system/development/cli/core//RenderEngine.php';
+				$obj = new RenderEngine();
+				$obj->new_render_view($path);
+				header("Location:" . App::this_url());
+				exit();
 			}
 		}
 
-		if (alevo_dev() == true) 
+		if (App::dev()) 
 		{
 			require_once 'system\development\debug\init.php';
 			$view_dir = $_ENV['path']['VIEWS_DIR'];
-			alevoDebug::view_not_found($this->view_name, $view_dir);
+			alevoDebug::view_not_found($this->view, $view_dir);
 			exit();
 		}
-	}
-
-	private function render_all()
-	{
-		if (alevo_dev())
-		{
-			require_once 'system/lib/sysTemplateEngine.php';
-			$obj = new sysTemplateEngine();
-			$obj->render_view();
-			$this->get_data_template_engine();
-		}
+		/*@endDevData*/
 	}
 }

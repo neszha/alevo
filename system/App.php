@@ -16,35 +16,15 @@ class App
 	public static $data_route = null;
 	public static $data_get   = null;
 
-	// public static function remove_sub_url($url)
-	// {
-	// 	global $config;
-	// 	$base_url_array = explode('/', $config['base_url']);
-	// 	$url            = str_replace(array_values($base_url_array), '', $url);
-	// 	return $url;
-	// }
-
 	public static function url()
 	{
 		if (isset($_GET['url'])) return $_GET['url'];
-		// if (isset($_SERVER['PATH_INFO'])) 
-		// {
-		// 	$url = $_SERVER['PATH_INFO'];
-		// 	$url = self::remove_sub_url($url);
-		// 	return $url;
-		// }
-		return '';
-	}
-
-	public static function parseURL()
-	{
-		if (self::url()) 
+		if (isset($_SERVER['PATH_INFO'])) 
 		{
-			$url = trim(self::url(), '/');
-			$url = explode('/', $url);
+			$url = preg_replace('/^\//', null, $_SERVER['PATH_INFO']);
 			return $url;
 		}
-		return [''];
+		return '';
 	}
 
 	public static function dev()
@@ -62,6 +42,16 @@ class App
 	{
 		if (isset($_ENV['FROM_CLI'])) return $_ENV['FROM_CLI'];
 		return false;
+	}
+
+	public static function this_url()
+	{
+		$protocol = 'http';
+		if(isset($_SERVER['HTTPS_ON'])) $protocol = 'https';
+		$host = $_SERVER['HTTP_HOST'];
+		$path = self::url();
+		$this_url = "$protocol://$host/$path";
+		return $this_url;
 	}
 
 }

@@ -13,6 +13,7 @@ class RenderView extends RenderEngine
 
 	public function main()
 	{
+		$this->update_render = false;
 		log_begin('Render View');
 		$this->save_file($this->storage_path, '');
 		$this->template_code_replace();
@@ -22,6 +23,22 @@ class RenderView extends RenderEngine
 		$this->render_all();
 		$this->end_log_render();
 		log_end();
+	}
+
+	public function update_view_file($view, $path)
+	{
+		$this->update_render = true;
+		$this->template_code_replace();
+		$this->rendered_path = $path;
+		$view_path = $this->view_dir . $view . '.php';
+		$this->render($view_path);
+	}
+
+	public function new_render($path)
+	{
+		$this->update_render = false;
+		$this->template_code_replace();
+		$this->render($path);
 	}
 
 	private function end_log_render()
@@ -35,14 +52,13 @@ class RenderView extends RenderEngine
 
 	private function render_all()
 	{
-		$this->done = 0;
 		foreach ($this->file_array as $path)
 		{
 			$this->render($path);
 		}
 	}
 
-	public function render($path)
+	private function render($path)
 	{
 		$this->ext  = $this->get_ext($path);
 		$this->path = $path;
@@ -55,6 +71,7 @@ class RenderView extends RenderEngine
 			$this->remove_null_line();
 			$this->minify();
 		}
+
 		$this->get_view_name();
 		$this->set_rendered_path();
 		$this->save_file($this->rendered_path, $this->view);
@@ -64,6 +81,7 @@ class RenderView extends RenderEngine
 
 	private function render_log()
 	{
+		if(!isset($this->done)) $this->done = 0;
 		$this->done++;
 		if (App::from_cli())
 		{
@@ -107,12 +125,15 @@ class RenderView extends RenderEngine
 
 	private function set_rendered_path()
 	{
-		$this->rendered_path = $this->render_dir . $this->random(25) . '.' . $this->ext;
-		if(App::dev())
+		if(!$this->update_render)
 		{
-			$view_name = str_replace('/', '.', $this->view_name);
-			$view_name = str_replace('-', '_', $view_name);
-			$this->rendered_path = $this->render_dir . '@dev__' . $this->random(7, true) . '__' . $view_name . '.' . $this->ext;
+			$this->rendered_path = $this->render_dir . $this->random(25) . '.' . $this->ext;
+			if(App::dev())
+			{
+				$view_name = str_replace('/', '.', $this->view_name);
+				$view_name = str_replace('-', '_', $view_name);
+				$this->rendered_path = $this->render_dir . '@dev__' . $this->random(7, true) . '__' . $view_name . '.' . $this->ext;
+			}
 		}
 	}
 

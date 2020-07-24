@@ -3,7 +3,7 @@
 if ( ! isset($argv[1]))
 {
 	main_usage();
-	exit;	
+	exit;
 }
 
 function get_cli_config($key)
@@ -13,11 +13,7 @@ function get_cli_config($key)
 	$data = $config[$key];
 	$main = $data[0];
 	$str = '';
-	for($i = 0; $i < count($data); $i++)
-	{
-		if($i != 0) $str .= "[$data[$i]] ";
-	}
-
+	for($i = 0; $i < count($data); $i++) if($i != 0) $str .= "[$data[$i]] ";
 	return (object) ['main' => $main, 'other' => $str];
 }
 

@@ -11,16 +11,14 @@
 |
 */
 
-// Route::get('/coba/{id}', function()
-// {
-// 	var_dump(_get());
-// 	return 'asdas';
-// });
+Route::get('/coba/{id}', function()
+{
+	echo '<hr>';
+	var_dump(_get());
+	var_dump(_data());
+	return 'hello world!';
+});
 
-Route::view('/ini/itu/init/{id}', 'coba');
-
-die();
-Route::get('/ini/itu/init/{id}', 'Coba@index');
 
 Route::get('/', 'indexController@index');
 

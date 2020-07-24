@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'USE_TEMPLATE_ENGINE' => false,
+    'USE_TEMPLATE_ENGINE' => true,
     
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ return [
 
     'VIEWS' => [
 
-        'minify'           => true,
+        'minify'           => false,
         'remove_comment'   => true,
         'remove_null_line' => true,
         'use_code_replace' => true,

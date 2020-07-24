@@ -36,7 +36,6 @@ class Route extends App
 		{
 			self::$group_url = $str;
 			return sysRouteGroup::route_group_callback_function($callback);
-			exit();
 		}
 	}
 
@@ -153,25 +152,25 @@ class Route extends App
 		}
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::view(url, view)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route view
+	 *
+	 * lorem other location as required by the application or its packages.
+	 *
+	 * @param	string	Route url
+	 * @param	string	View name
+	 * @todo			Get view file and open it
+	 */
 
-	public static function view($string, $view_name)
+	public static function view($route, $view)
 	{
 		require_once 'system/lib/sysRouteUrl.php';
-		if (sysRouteUrl::route_security($string) == true)
+		if (sysRouteUrl::route_security($route) == true)
 		{
 			require_once 'system/lib/sysView.php';
 			$obj = new sysView();
-			require_once $obj->view_engine($view_name);
+			$path = $obj->view_engine($view);
+			if(is_file($path)) require_once $path;
 			exit();
 		}
 	}

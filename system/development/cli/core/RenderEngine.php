@@ -2,14 +2,12 @@
 
 class RenderEngine
 {
-    /**
-     * summary
-     */
-    
     public function __construct()
     {
     	require_once 'system/lib/sysPath.php';
+        require_once 'system/development/cli/core/Effects.php';
     	$this->sysPath = new sysPath();
+        if(!isset($_ENV['templateEngine'])) $_ENV['templateEngine'] = require_once 'app/config/TemplateEngine.php';
     }
 
     public function render_view()
@@ -17,6 +15,20 @@ class RenderEngine
     	require_once 'system/development/cli/core/actions/RenderView.php';
     	$obj = new RenderView();
     	$obj->main();
+    }
+
+    public function update_render_view($view, $path)
+    {
+        require_once 'system/development/cli/core/actions/RenderView.php';
+        $obj = new RenderView();
+        $obj->update_view_file($view, $path);
+    }
+
+    public function new_render_view($path)
+    {
+        require_once 'system/development/cli/core/actions/RenderView.php';
+        $obj = new RenderView();
+        $obj->new_render($path);
     }
 
     public function render_resource()
