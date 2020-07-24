@@ -4,7 +4,7 @@ class sysView
 {
 	public function view_engine($view)
 	{
-		$this->view = str_replace(['/'], '.', $view);
+		$this->view = str_replace(['.'], '/', $view);
 		$this->get_data_template_engine();
 		return $this->view_template();
 	}

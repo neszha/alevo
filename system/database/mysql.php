@@ -21,7 +21,7 @@ class mysql extends DB
 		try {
 			$this->dbh = new PDO($dsn, $username, $password);
 		} catch (PDOException $error) {
-			if (alevo_dev())
+			if (App::dev())
 			{
 				require_once 'system\development\debug\init.php';
 				databaseDebug::db_mysql_database_off($error->getMessage(), 400);
@@ -45,7 +45,7 @@ class mysql extends DB
 	{
 		if (!$this->stmt->execute())
 		{
-			if (alevo_dev())
+			if (App::dev())
 			{
 				if ($this->stmt->rowCount() == 0) 
 				{
@@ -238,7 +238,6 @@ class mysql extends DB
 			if(!$html) $value = htmlspecialchars($value);
 			$this->bind[]   = [$this->random, $value];
 		}
-		// die();
 		$set_value = implode(', ', $update_value);
 		if ($this->use_sql_condition) $condition = " {$this->sql_condition}";
 		$this->sql = "{$this->sql} {$set_value}{$condition}";
@@ -374,7 +373,7 @@ class mysql extends DB
 
 	private function db_mysql_prepare()
 	{
-		if (alevo_dev()) $this->db_mysql_show_real_sql();
+		if (App::dev()) $this->db_mysql_show_real_sql();
 		$this->db_mysql_connect();
 		$this->stmt = $this->dbh->prepare($this->sql);
 		$this->db_mysql_bind();
@@ -383,7 +382,7 @@ class mysql extends DB
 	private function db_mysql_execute()
 	{
 		$this->db_mysql_prepare();
-		if (alevo_dev() && isset($_SESSION['user_show_sql']))
+		if (App::dev() && isset($_SESSION['user_show_sql']))
 		{
 			require_once 'system\development\debug\init.php';
 			databaseDebug::db_mysql_show_sql_syntax($this->sql_real, 400);
@@ -393,7 +392,7 @@ class mysql extends DB
 		$exe = $this->stmt->execute();
 		if (!$exe)
 		{
-			if (alevo_dev())
+			if (App::dev())
 			{
 				if ($this->stmt->rowCount() == 0) 
 				{

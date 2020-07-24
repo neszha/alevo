@@ -22,14 +22,17 @@ class DB
 
 	private function main()
 	{
-		self::$db = $_ENV['database'];
-		self::$connection = $_ENV['database']['DATABASE_CONNECTION'];
-		if (self::$db['DATABASE'] != true) 
+		$_ENV['database'] = require_once 'app/config/Database.php';
+		/*devData*/
+		if (!$_ENV['database']) 
 		{
 			require_once 'system\development\debug\init.php';
 			alevoDebug::database_is_off();
 			exit();
 		}
+		/*endDevData*/
+		self::$db = $_ENV['database'];
+		self::$connection = $_ENV['database']['DATABASE_CONNECTION'];
 	}
 
 	/**

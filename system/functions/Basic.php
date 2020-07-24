@@ -39,11 +39,6 @@ function cache_version()
 	return $_ENV['app']['APP_VERSION'] . $x;
 }
 
-function alevo_dev()
-{
-	return $_ENV['development']['DEVELOPMENT'];
-}
-
 function save_file($path)
 {
 	require_once "system/lib/sysPath.php";

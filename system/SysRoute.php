@@ -1,32 +1,32 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Route System
-|--------------------------------------------------------------------------
-|
-| This value is the name of your application. This value is used when the
-| framework needs to place the application's name in a notification or
-| any other location as required by the application or its packages.
-|
-*/
+/**
+ * alevo Route System
+ *
+ * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ *
+ * @package		alevo
+ * @author		Fanesa Hadi Pramana
+ */
 
 class Route extends App
 {
-	private $string;
-	private $callback;
-	private static $group_url = '';
+	/**
+	 * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	 *
+	 * @var	string
+	 */
+	private static $group_url;
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::group(url, callback)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route group
+	 *
+	 * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	 *
+	 * @param	string	Route url
+	 * @param	object	callback
+	 * @return  object	
+	 */
 
 	public static function group($str, $callback)
 	{
@@ -39,16 +39,15 @@ class Route extends App
 		}
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::get(url, callback)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route get
+	 *
+	 * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	 *
+	 * @param	string	Route url
+	 * @param	object	callback
+	 * @todo  			To get controller code or view string with GET method
+	 */
 
 	public static function get($str, $callback)
 	{
@@ -69,16 +68,15 @@ class Route extends App
 		}
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::redirect(from, to)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route redirect
+	 *
+	 * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	 *
+	 * @param	string	url
+	 * @param	string	url
+	 * @todo  			Redirect to other url
+	 */
 
 	public static function redirect($from, $to)
 	{
@@ -92,16 +90,15 @@ class Route extends App
 		}
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::post(url, callback)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route post
+	 *
+	 * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	 *
+	 * @param	string	Route url
+	 * @param	object	callback
+	 * @todo  			To get controller code or view string with POST method
+	 */
 
 	public static function post($str, $callback)
 	{
@@ -122,16 +119,16 @@ class Route extends App
 		}
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::match(methods, url, callback)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route match
+	 *
+	 * Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	 *
+	 * @param	array	Method
+	 * @param	string	Route url
+	 * @param	object	callback
+	 * @todo  			To match method
+	 */
 
 	public static function match($methods, $str, $callback)
 	{
@@ -175,41 +172,37 @@ class Route extends App
 		}
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::data(string)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route data
+	 *
+	 * lorem other location as required by the application or its packages.
+	 *
+	 * @param	string	Key to get data (optional)
+	 * @return 	array	Return array or string
+	 */
 
 	public static function data($param = false)
 	{
 		$data = parent::$data_route;
-		if ($param == false) return $data;
-		if(isset($data[$param])) return $data[$param];
+		if (!$param) return $data;
+		if (isset($data[$param])) return $data[$param];
 		return $data[$param];
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Route::_get(string)
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
+	/**
+	 * Route _get
+	 *
+	 * lorem other location as required by the application or its packages.
+	 *
+	 * @param	string	Key to get data (optional)
+	 * @return 	array	Return array or string
+	 */
 
 	public static function _get($param = false)
 	{
 		$data = parent::$data_get;
-		if ($param == false) return $data;
-		if(isset($data[$param])) return $data[$param];
+		if (!$param) return $data;
+		if (isset($data[$param])) return $data[$param];
 		return null;
 	}
 

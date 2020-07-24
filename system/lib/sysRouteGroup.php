@@ -6,7 +6,7 @@ class sysRouteGroup extends App
 	{
 		$server_url = self::parse_group_server_url($str);
 		$client_url = self::parse_group_client_url($server_url);
-		return self::group_url_same_check($server_url, $client_url);
+		return self::group_url_check($server_url, $client_url);
 	}
 
 	private static function parse_group_server_url($str)
@@ -19,27 +19,20 @@ class sysRouteGroup extends App
 
 	private static function parse_group_client_url($array_url)
 	{
-		$client_url     = parent::parseURL();
-		$new_client_url = [];
-		for ($i=0; $i < count($array_url); $i++) 
-		{
-			$new_client_url[] = $client_url[$i];
-		}
-		return $new_client_url;
+		$url = trim(self::url(), '/');
+		$url = explode('/', $url);
+		$new_url = [];
+		for ($i = 0; $i < count($array_url); $i++) $new_url[] = $url[$i];
+		return $new_url;
 	}
 
-	private static function group_url_same_check($server_url, $client_url)
+	private static function group_url_check($server_url, $client_url)
 	{
 		if (count($server_url) == count($client_url)) 
 		{
-			for ($i=0; $i < count($server_url); $i++) 
+			for ($i = 0; $i < count($server_url); $i++) 
 			{
-				$first_symb = substr($server_url[$i], 0,1);
-				$last_symb  = substr($server_url[$i], -1);
-				if ($first_symb == '{' AND $last_symb == '}') 
-				{
-					$server_url[$i] = $client_url[$i];
-				}
+				if (preg_match('/\{.+\}$/', $server_url[$i])) $server_url[$i] = $client_url[$i];
 			}
 			if ($server_url == $client_url) return true;
 		}
@@ -48,11 +41,10 @@ class sysRouteGroup extends App
 
 	public static function route_group_callback_function($callback)
 	{
-		if (is_string($callback) == false) 
+		if (!is_string($callback)) 
 		{
 			$_callback = call_user_func($callback);
-
-			if (is_string($_callback) == true) 
+			if (is_string($_callback)) 
 			{
 				echo $_callback;
 				exit();

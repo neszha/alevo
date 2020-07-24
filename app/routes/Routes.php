@@ -11,14 +11,33 @@
 |
 */
 
-Route::get('/coba/{id}', function()
-{
-	echo '<hr>';
-	var_dump(_get());
-	var_dump(_data());
-	return 'hello world!';
-});
+// Route::get('/coba', function()
+// {
+// 	echo '<hr>';
+// 	var_dump(_get());
+// 	var_dump(_data());
+// 	return 'hello world!';
+// });
+// 
 
+
+// Route::group('/ini', function()
+// {
+// 	Route::group('/itu', function()
+// 	{
+// 		Route::get('/uno', function()
+// 		{
+// 			return 'ini adalah grup itu';
+// 		});
+// 	});
+// });
+
+// var_dump('none');
+
+// die();
+
+// Route::view('/', 'index');
+// die();
 
 Route::get('/', 'indexController@index');
 

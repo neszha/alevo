@@ -7,9 +7,7 @@ class sysRouteUrl extends App
 	{
 		$server_url = self::parse_server_url($str);
 		$client_url = self::parse_client_url();
-		var_dump($server_url);
-		var_dump($client_url);
-		return self::url_same_check($server_url, $client_url);
+		return self::url_check($server_url, $client_url);
 	}
 
 	private function parse_server_url($str)
@@ -27,24 +25,21 @@ class sysRouteUrl extends App
 		return $url;
 	}
 
-	private function url_same_check($server_url, $client_url)
+	private function url_check($server_url, $client_url)
 	{
 		if (count($server_url) == count($client_url)) 
 		{
-			$new_data_get = [];
-			for ($i=0; $i < count($server_url); $i++) 
-			{ 
-				$first_symb = substr($server_url[$i], 0,1);
-				$last_symb  = substr($server_url[$i], -1);
-				if ($first_symb == '{' AND $last_symb == '}') 
+			$route_data = [];
+			for ($i = 0; $i < count($server_url); $i++) 
+			{
+				if (preg_match('/\{.+\}$/', $server_url[$i])) 
 				{
-					$replace                 = [ '{' => '', '}' => '' ];
-					$data_key                = str_replace(array_keys($replace), array_values($replace), $server_url[$i]);
-					$new_data_get[$data_key] = $client_url[$i];
-					$server_url[$i]          = $client_url[$i];
+					$key            = preg_replace('/[\{\}]/', null, $server_url[$i]);
+					$route_data[$key] = $client_url[$i];
+					$server_url[$i] = $client_url[$i];
 				}
 			}
-			parent::$data_route = $new_data_get;
+			parent::$data_route = $route_data;
 			if ($server_url == $client_url)
 			{
 				self::set_data_get();
@@ -56,32 +51,32 @@ class sysRouteUrl extends App
 
 	private function set_data_get()
 	{
-		$data_get = null;
 		if (isset($_SERVER['REQUEST_URI'])) 
 		{
-			$data_get = [];
-			$get_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-			$query_string = null;
-			if(isset($get_uri[1])) $query_string = $get_uri[1];
-			$array_level_1 = explode('&', $query_string);
-			foreach ($array_level_1 as $x) 
+			$_get = [];
+			$R_URI = $_SERVER['REQUEST_URI'];
+			if(preg_match('/\?.+/', $R_URI, $match))
 			{
-				$array_level_2 = explode('=', $x, 2);
-				$value = null;
-				if(isset($array_level_2[1])) $value = $array_level_2[1];
-				$data_get[$array_level_2[0]] = $value;
+				$_get_str = trim($match[0], '?');
+				$array = explode('&', $_get_str);
+				foreach ($array as $x)
+				{
+					$y = explode('=', $x, 2);
+					$_get[$y[0]] = $y[1];	
+				}
 			}
 		}
-		parent::$data_get = $data_get;
+		$_GET = $_get;
+		parent::$data_get = $_get;
 	}
 
 	public function route_callback_function($callback)
 	{
-		if (is_string($callback) == false) 
+		if (!is_string($callback)) 
 		{
 			$_callback = call_user_func($callback);
 			if (is_null($_callback)) exit();
-			if (is_string($_callback) == true) 
+			if (is_string($_callback)) 
 			{
 				echo $_callback;
 				exit();
@@ -101,7 +96,7 @@ class sysRouteUrl extends App
 		{
 			require_once $file_location;
 			$object_controller = new $controller();
-			if (method_exists($object_controller, $method) == false) 
+			if (!method_exists($object_controller, $method)) 
 			{
 				$res_code = 406;
 				http_response_code($res_code);
