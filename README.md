@@ -1,3 +1,1 @@
-# Next Project
-
-Render resource by file ext
+Simple PHP Framework with MVC
