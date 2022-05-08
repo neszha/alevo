@@ -1,1 +1,1 @@
-Simple PHP Framework with MVC
+Simple PHP Framework with MVC.
